@@ -30,8 +30,72 @@ ex_2 <- penguins %>%
     sd_flip = sd(flipper_length_mm),
     sample_size = n()
   )
-  
 ```
+
+## joins practice
+```{r}
+animals <- tibble::tribble(
+  ~location,   ~species,  ~maturity,
+   "lagoon",   "bobcat",    "adult",
+    "bluff",   "coyote", "juvenile",
+    "creek",      "fox",    "adult",
+     "oaks", "squirrel", "juvenile",
+    "bluff",   "bobcat",    "adult"
+  )
+
+sites <- tibble::tribble(
+  ~location,      ~full_site_name, ~jurisdiction,
+    "beach",       "Goleta Beach",     "SB City",
+   "lagoon",        "UCSB Lagoon",        "UCSB",
+    "bluff",       "Ellwood Mesa",     "SB City",
+     "oaks", "Fremont Campground",        "USFS"
+  )
+
+```
+
+### Full join
+```{r}
+animals_full_join <- full_join(animals, sites)
+```
+# Left join
+```{r}
+animals_left_join <- left_join(animals, sites)
+
+```
+
+# Inner join
+```{r}
+animals_inner_join <- inner_join(animals, sites)
+```
+
+## Filtering joins 
+semi join
+```{r}
+animals_semi_join <- semi_join(animals, sites)
+
+```
+
+## anti join 
+```{r}
+animals_anti_join <- anti_join(sites, animals)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
