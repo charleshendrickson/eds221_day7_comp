@@ -1,0 +1,37 @@
+---
+title: "comp_day7"
+author: "Charles Hendrickson"
+date: "8/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+##ex_1
+```{r}
+ex_1 <- penguins %>% 
+  filter(island %in% c("Biscoe", "Dream")) %>% 
+  select(-sex, -year) %>% 
+  mutate(body_mass_kg = body_mass_g / 1000) %>%
+  rename(location = island)
+```
+##ex_2
+```{r}
+ex_2 <- penguins %>%
+  filter(species == "Adelie") %>%
+  drop_na(flipper_length_mm) %>%
+  group_by(sex) %>%
+  summarize(
+    mean_flip = mean(flipper_length_mm),
+    sd_flip = sd(flipper_length_mm),
+    sample_size = n()
+  )
+  
+```
+
+
+
