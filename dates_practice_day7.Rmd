@@ -1,0 +1,106 @@
+---
+title: "dates_practice"
+author: "Charles Hendrickson"
+date: "8/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+## 
+```{r}
+my_date <- "03-15-1998"
+class(my_date)
+```
+```{r}
+my_date_new <- lubridate::mdy(my_date)
+class(my_date_new)
+```
+
+# Try converting the following to dates
+
+- 4/6/2005
+- 20100806
+- 12-Jun-1974
+- Your birthday
+
+```{r}
+ex_date1 <- lubridate::mdy("4/6/1907")
+ex_date2 <- lubridate::ymd("20100806")
+ex_date3 <- lubridate::dmy("12-Jun-1974")
+
+
+ex_date4 <- lubridate::mdy(c("09/24/1998", "09241998"))
+ex_date4
+
+
+lubridate::mdy("20-03-2004")
+```
+
+```{r}
+
+time <- "2020-08-12 11:18"
+ex_5 <- lubridate::ymd_hm(time)
+
+ex_5
+
+
+time_la <- with_tz(ex_5, "America/Los_Angeles")
+time_la
+
+# Create a date time
+# Convert it to a time in Syndney Aus
+
+time_syd <- with_tz(ex_5, "Australia/Sydney")
+time_syd
+```
+
+```{r}
+lubridate::week(time_syd)
+
+lubridate::day(time_syd)
+
+lubridate::minute(time_syd)
+
+lubridate::second(time_syd)
+```
+
+```{r}
+my_bday <- lubridate::ymd("1998-09-24")
+
+wday(my_bday, label = TRUE)
+```
+
+```{r}
+urchin_counts <- tribble(
+  ~date, ~species, ~size_mm,
+  "10/3/2020", "purple", 55,
+  "11/1/2020", "pink", 46
+)
+
+urchin_count_ymd <- urchin_counts %>%
+  mutate(date = lubridate::mdy(date)) %>% 
+  mutate(year = year(date))
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
